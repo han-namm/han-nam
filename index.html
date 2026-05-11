@@ -3,27 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자기 소개</title>
+    <title>한남 프로필</title>
     <style>
+        /* 기본 배경 및 폰트 설정 */
         body {
-            background-color: #1a1a1a;
-            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            /* 1. 배경 설정: 연하늘색 그라데이션과 움직이는 별 효과 */
+            background: linear-gradient(135deg, #e0f2f1 0%, #b3e5fc 100%),
+                        radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 40px);
+            background-size: 100% 100%, 100px 100px;
+            color: #333; /* 텍스트는 어두운 색으로 (가독성 확보) */
+            font-family: 'Apple SD Gothic Neo', sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
+            min-height: 100vh;
+            overflow: hidden; /* 배경 애니메이션 범위를 벗어나지 않도록 */
         }
-        h1 { font-size: 2rem; margin-bottom: 10px; }
-        p { color: #aaaaaa; }
-        .quote { font-style: italic; margin-top: 20px; color: #888; }
+
+        /* 별 애니메이션 (CSS로 구현) */
+        @keyframes starrysky {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 0 0, 1000px 1000px; }
+        }
+
+        /* 컨테이너 및 프로필 사진 설정 */
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.7); /* 카드 배경을 약간 투명하게 */
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+            position: relative; /* 애니메이션 별이 컨테이너 뒤로 가게 */
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff; /* 흰색 테두리 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        /* 텍스트 스타일 */
+        h1 { font-size: 2.2rem; margin: 10px 0; letter-spacing: 1px; color: #0277bd; } /* 제목을 진한 연하늘색으로 */
+        .handle { color: #546e7a; margin-bottom: 20px; display: block; font-size: 0.9rem; }
+        .bio { margin-bottom: 30px; line-height: 1.7; color: #555; }
+        
+        /* 태그 스타일 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .tag {
+            background: rgba(129, 212, 250, 0.2); /* 태그 배경을 연한 파란색 투명하게 */
+            border: 1px solid rgba(129, 212, 250, 0.4);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: #01579b; /* 태그 텍스트 색상 */
+            transition: 0.3s ease;
+        }
+
+        /* 마우스 오버 효과 (태그가 더 밝아짐) */
+        .tag:hover {
+            background: rgba(129, 212, 250, 0.4);
+            transform: translateY(-2px); /* 살짝 위로 이동 */
+        }
     </style>
 </head>
 <body>
-    <h1>ㅇㅇㅇ!</h1>
-    <p>ㅇㅇㅇ.</p>
-    <div class="quote">"ㅇㅇ ㅇㅇ."</div>
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+                background-image: radial-gradient(white, rgba(255, 255, 255, 0.15) 1.5px, transparent 30px);
+                background-size: 80px 80px;
+                animation: starrysky 150s linear infinite;"></div>
+
+    <div class="container">
+        <img src="https://via.placeholder.com/150" alt="프로필" class="profile-img">
+        
+        <h1>한남이 </h1>
+        <span class="handle">@ mirseolhwa</span>
+        
+        <p class="bio">
+            ㅇ우우우 ㅜㅇ우 우우ㅜbr>
+            우우웅우우우ㅜㅇ
+        </p>
+
+        <div class="tags">
+            <div class="tag"> </div>
+            <div class="tag"> 08년생</div>
+            <div class="tag"> 4월 8일생</div>
+            <div class="tag"> INFP</div>
+            <div class="tag"> </div>
+            <div class="tag"> </div>
+        </div>
+        
+        <p style="margin-top: 35px; font-size: 0.8rem; color: #ffffff;">
+            우웅엥에에ㅔㅇ에ㅔㅇ에
+        </p>
+    </div>
 </body>
 </html>
