@@ -3,91 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자기 소개</title>
+    <title> 자기 소개</title></title>
     <style>
-        /* 1. 배경 설정: 진한 파랑에서 남색으로 이어지는 그라데이션 + 별 효과 */
+        /* 1. 배경 설정: 밝은 검정(Dark Grey)과 움직이는 귀여운 책 애니메이션 */
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #001a33 100%);
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
+            background-color: #1a1a1a; /* 밝은 검정 */
+            color: #eeeeee;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
             display: flex;
             justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* 밤하늘 별 애니메이션 */
-        .stars {
+        /* 2. 임팩트! 배경에서 펼쳐지는 귀여운 책 애니메이션 */
+        .background-books {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: radial-gradient(white, rgba(255, 255, 255, 0.2) 1px, transparent 20px);
-            background-size: 50px 50px;
-            animation: starrysky 100s linear infinite;
-            opacity: 0.5;
+            opacity: 0.1; /* 너무 튀지 않게 투명도 조절 */
+            pointer-events: none; /* 클릭 안 되게 */
         }
 
-        @keyframes starrysky {
-            from { background-position: 0 0; }
-            to { background-position: 1000px 1000px; }
+        /* 책 이모지 하나하나 스타일링 */
+        .book-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: bookFly infinite ease-in-out;
+            transform-origin: center bottom;
         }
 
-        /* 메인 컨테이너 */
+        /* 책들이 다 다른 위치/시간에서 날아다니게 */
+        .book1 { top: 10%; left: 10%; animation-duration: 25s; animation-delay: -5s; }
+        .book2 { top: 30%; left: 80%; animation-duration: 20s; animation-delay: 0s; font-size: 2.5rem;}
+        .book3 { top: 60%; left: 20%; animation-duration: 28s; animation-delay: -10s; }
+        .book4 { top: 80%; left: 70%; animation-duration: 22s; animation-delay: -15s; font-size: 1.8rem;}
+        .book5 { top: 50%; left: 50%; animation-duration: 30s; animation-delay: -2s; font-size: 3rem;}
+
+        /* 책이 날아다니고 펼쳐지는 애니메이션 핵심 */
+        @keyframes bookFly {
+            0% { transform: translateY(0) rotate(0deg) scaleY(1); opacity: 0; }
+            10% { opacity: 1; }
+            20% { transform: translateY(-50px) rotate(5deg) scaleY(0.9); } /* 살짝 굽힘 (펼쳐지기 전) */
+            50% { transform: translateY(-100px) rotate(-5deg) scaleY(1); } /* 펴짐 */
+            80% { transform: translateY(-150px) rotate(3deg) scaleY(0.95); opacity: 1;}
+            100% { transform: translateY(-200px) rotate(0deg) scaleY(1); opacity: 0; } /* 사라짐 */
+        }
+
+        /* 3. 메인 컨테이너 (깔끔한 다크 테마) */
         .container {
             width: 90%;
             max-width: 550px;
-            background: rgba(255, 255, 255, 0.05); /* 어두운 투명 배경 */
-            backdrop-filter: blur(10px); /* 유리알 효과 */
+            background: rgba(255, 255, 255, 0.03); /* 아주 살짝 밝은 배경 */
+            backdrop-filter: blur(5px);
             padding: 40px 20px;
             margin: 40px 0;
             border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 1;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
         }
 
-        /* 프로필 섹션 */
+        /* 프로필 섹션 (깔끔하게) */
         .profile-img {
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
             margin-bottom: 20px;
             object-fit: cover;
+            background-color: #333; /* 이미지 없을 때 대비 */
         }
 
-        h1 { font-size: 2.2rem; margin: 10px 0; color: #e3f2fd; }
-        .handle { color: #90caf9; font-size: 0.9rem; display: block; margin-bottom: 25px; }
+        h1 { font-size: 2.2rem; margin: 10px 0; color: #ffffff; letter-spacing: 1px;}
+        .handle { color: #aaaaaa; font-size: 0.9rem; display: block; margin-bottom: 25px; }
 
-        /* 섹션 타이틀 */
+        /* 섹션 타이틀 (아이콘 변경) */
         h2 { 
             font-size: 1.2rem; 
-            color: #bbdefb; 
+            color: #cccccc; 
             margin-top: 40px; 
             margin-bottom: 20px; 
             display: flex; 
             align-items: center; 
             justify-content: center;
             gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
         }
-        h2::before, h2::after { content: "✦"; font-size: 0.8rem; opacity: 0.6; }
+        h2::before { content: "📖"; font-size: 1rem; opacity: 0.7; }
 
         /* 카드 형태의 소개글 */
         .content-card {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 20px;
             line-height: 1.8;
             font-size: 0.95rem;
-            color: #e0e0e0;
+            color: #dddddd;
             margin-bottom: 25px;
             text-align: left;
         }
@@ -95,21 +117,21 @@
         /* 태그 스타일 */
         .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .tag {
-            background: rgba(144, 202, 249, 0.15);
-            border: 1px solid rgba(144, 202, 249, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 8px 18px;
             border-radius: 30px;
             font-size: 0.85rem;
-            color: #e3f2fd;
+            color: #eeeeee;
         }
 
         /* 상태 바 */
         .stat-item { margin-bottom: 15px; }
-        .stat-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; color: #bbdefb; }
+        .stat-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; color: #aaaaaa; }
         .progress-bg { background: rgba(255, 255, 255, 0.1); height: 8px; border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(to right, #42a5f5, #1e88e5); border-radius: 4px; }
+        .progress-fill { height: 100%; background: linear-gradient(to right, #aaaaaa, #555555); border-radius: 4px; } /* 회색톤 */
 
-        /* 버튼 */
+        /* 버튼 (다크 테마에 맞춰) */
         .btn {
             display: inline-block;
             margin-top: 15px;
@@ -126,40 +148,46 @@
     </style>
 </head>
 <body>
-    <div class="stars"></div>
+    <div class="background-books">
+        <span class="book-emoji book1">ㅇ</span>
+        <span class="book-emoji book2">ㅇ</span>
+        <span class="book-emoji book3">ㅇ</span>
+        <span class="book-emoji book4">ㅇ</span>
+        <span class="book-emoji book5">ㅇ</span>
+    </div>
 
     <div class="container">
         <img src="https://via.placeholder.com/140" alt="프로필" class="profile-img">
-        <h1>한남이</h1>
-        <span class="handle">@ han_nam</span>
-        <p style="color: #cfd8dc; font-style: italic;">"세상이 싫어도 오늘도 살아있어요."</p>
+        <h1>자기 소개</h1>
+        <span class="handle">@ han_nam_</span>
+        <p style="color: #aaaaaa; font-style: italic;">"세글자"</p>
 
         <div class="tags">
-            <div class="tag">♂ 여자?</div>
-            <div class="tag">🎂 08년생</div>
-            <div class="tag">✨ ENFP</div>
-            <div class="tag">🎮 게임러</div>
-            <div class="tag">🎧 음악중독</div>
+            <div class="tag"> 여자?</div>
+            <div class="tag"> 0408</div>
+            <div class="tag"> INFP</div>
+            <div class="tag"> ㅇㅇㅇ</div>
+            <div class="tag"> ㅇㅇㅇ</div>
         </div>
 
         <h2>나에 대해서</h2>
         <div class="content-card">
-            ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ<br>
-            ㅇㅇㅇㅇㅇㅇ.<br>
-            ㅇㅇㅇㅇㅇㅇ🌙
-        </div>
-
-       
-        </div>
-
-        <h2>세글자</h2>
-        <div class="content-card" style="font-size: 0.9rem;">
+            안녕하세요, ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ.<br>
             ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ<br>
-            ㅇㅇㅇㅇ<br>
-            ㅇㅇㅇㅇ
+            ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
         </div>
 
-        <a href="#" class="btn">Twitter 바로가기</a>
+       </div></div>
+        </div>
+
+        <h2>한마디</h2>
+        <div class="content-card" style="font-size: 0.9rem;">
+            ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ<br>
+            ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ<br>
+            ㅇㅇㅇㅇㅇㅇㅇㅇ
+        </div>
+
+        <a href="#" class="btn">인스타그램 바로가기</a>
     </div>
 </body>
 </html>
